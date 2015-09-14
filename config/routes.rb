@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'homes/index'
+
   resources :trips
 
   resources :reservations
