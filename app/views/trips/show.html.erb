@@ -1,89 +1,54 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Trip -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Trip %></h1>
+</div>
 
-<p>
-  <strong>Origin:</strong>
-  <%= @trip.origin %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:origin) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.origin %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:destination) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.destination %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:date) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.date %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:time) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.time %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:seat) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.seat %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:price) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.price %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:description) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.description %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:city1) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.city1 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:country1) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.country1 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:city2) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.city2 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:country2) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.country2 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:lat1) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.lat1 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:lng1) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.lng1 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:lat2) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.lat2 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:lng2) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.lng2 %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:list_stops) %></dt>
+      <dd><pre class="prettyprint"><%= @trip.list_stops %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Destination:</strong>
-  <%= @trip.destination %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              trips_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_trip_path(@trip), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              trip_path(@trip),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @trip.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @trip.time %>
-</p>
-
-<p>
-  <strong>Seat:</strong>
-  <%= @trip.seat %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @trip.price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @trip.description %>
-</p>
-
-<p>
-  <strong>City1:</strong>
-  <%= @trip.city1 %>
-</p>
-
-<p>
-  <strong>Country1:</strong>
-  <%= @trip.country1 %>
-</p>
-
-<p>
-  <strong>City2:</strong>
-  <%= @trip.city2 %>
-</p>
-
-<p>
-  <strong>Country2:</strong>
-  <%= @trip.country2 %>
-</p>
-
-<p>
-  <strong>Lat1:</strong>
-  <%= @trip.lat1 %>
-</p>
-
-<p>
-  <strong>Lng1:</strong>
-  <%= @trip.lng1 %>
-</p>
-
-<p>
-  <strong>Lat2:</strong>
-  <%= @trip.lat2 %>
-</p>
-
-<p>
-  <strong>Lng2:</strong>
-  <%= @trip.lng2 %>
-</p>
-
-<p>
-  <strong>List stops:</strong>
-  <%= @trip.list_stops %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @trip.user %>
-</p>
-
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
