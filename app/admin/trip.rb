@@ -1,4 +1,5 @@
 ActiveAdmin.register Trip do
+  permit_params :origin, :destination, :date, :time, :seat, :price, :description, :city1, :country1, :city2, :country2, :lat1, :lng1, :lat2, :lng2, :list_stops
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
