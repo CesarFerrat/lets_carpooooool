@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Reservation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Reservation %></h1>
+</div>
 
-<p>
-  <strong>Trip:</strong>
-  <%= @reservation.trip %>
-</p>
+<div class="fieldset">
+  <dl>
+  </dl>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @reservation.user %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              reservations_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_reservation_path(@reservation), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              reservation_path(@reservation),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
