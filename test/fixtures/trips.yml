@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyString
+  destination: MyString
+  date: 2015-09-14 20:13:51
+  time: 2015-09-14 20:13:51
+  seat: 1
+  price: 1
+  description: MyText
+  city1: MyString
+  country1: MyString
+  city2: MyString
+  country2: MyString
+  lat1: MyString
+  lng1: MyString
+  lat2: MyString
+  lng2: MyString
+  list_stops: MyString
+  user_id: 
+
+two:
+  origin: MyString
+  destination: MyString
+  date: 2015-09-14 20:13:51
+  time: 2015-09-14 20:13:51
+  seat: 1
+  price: 1
+  description: MyText
+  city1: MyString
+  country1: MyString
+  city2: MyString
+  country2: MyString
+  lat1: MyString
+  lng1: MyString
+  lat2: MyString
+  lng2: MyString
+  list_stops: MyString
+  user_id: 
