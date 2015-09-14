@@ -29,6 +29,7 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
+    @reservation.user = current_user
 
     respond_to do |format|
       if @reservation.save
