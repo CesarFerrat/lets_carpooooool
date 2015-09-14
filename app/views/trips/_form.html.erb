@@ -1,0 +1,27 @@
+<%= simple_form_for(@trip) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :origin %>
+    <%= f.input :destination %>
+    <%= f.input :date %>
+    <%= f.input :time %>
+    <%= f.input :seat %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :city1 %>
+    <%= f.input :country1 %>
+    <%= f.input :city2 %>
+    <%= f.input :country2 %>
+    <%= f.input :lat1 %>
+    <%= f.input :lng1 %>
+    <%= f.input :lat2 %>
+    <%= f.input :lng2 %>
+    <%= f.input :list_stops %>
+    <%= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
