@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: lets_carpooooool_development
+  username: cesar
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

@@ -5,6 +5,69 @@ class ReservationsController < ApplicationController
 
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
+  # def reserve
+	# 	trip = Trip.find_by(:id => params[:id])
+ #    	if user_signed_in?
+	#     	unless trip.users.include?(current_user)
+	#       		trip.users.push(current_user)
+	#       		render :status => 200, :json => {:response => "Joined Tournament"}
+	#     	else
+	#       		render :status => 400, :json => {:response => "Attempt failed"}
+	#     	end
+	#     end
+	# end
+
+	# def unreserve
+	# 	trip = Trip.find_by(:id => params[:id])
+ #    	if user_signed_in?
+ #      		trip.users.delete(current_user)
+ #      		render :status => 200, :json => {:response => "Unregistered"}
+ #    	else
+ #      		render :status => 400, :json => {:response => "Attempt failed"}
+ #    	end
+	# end
+
+	# def get_info
+	# 	trip = Trips.find_by(:id => params[:id])
+	# 	render :json => {
+	# 		:user_id => user.id,
+	# 		:title => tournament.title,
+	# 		:venue => tournament.venue,
+	# 		:date => pretty_date(tournament.date),
+	# 	}
+	# end
+
+	# def load_all
+	# 	tournamentsArray = Tournament.order("date")
+	# 	package = []
+	# 	tournamentsArray.each do |tournament|
+	# 		if tournament.users.include?(current_user)
+	# 			registered = "true"
+	# 		else
+	# 			registered = "false"
+	# 		end
+	# 		newTournament = {
+	# 		:register => registered,
+	# 		:id => tournament.id,
+	# 		:title => tournament.title,
+	# 		:venue => tournament.venue,
+	# 		:date => pretty_date(tournament.date),
+	# 		:entryfee => number_to_currency(tournament.entryfee),
+	# 		:spotsavailable => (tournament.maxparticipants - tournament.users.count),
+	# 		:maxparticipants => tournament.maxparticipants
+	# 		}
+	# 		package.push(newTournament)
+	# 	end
+	# 	if current_user.present?
+	# 		render json: package
+	# 	else
+	# 		render json: {
+	# 			response: "Not Permitted"
+	# 		}
+
+	# 	end
+	# end
+
   # GET /reservations
   # GET /reservations.json
   def index

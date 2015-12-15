@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  #only code from original project
+  def after_sign_in_path_for(user)
+			user_path(user)
+	end
+
   protected
 
   #->Prelang (user_login:devise)
@@ -16,7 +21,7 @@ class ApplicationController < ActionController::Base
 
 
   private
-  
+
   #-> Prelang (user_login:devise)
   def require_user_signed_in
     unless user_signed_in?
