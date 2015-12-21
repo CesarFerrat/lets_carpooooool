@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def createTrips
-      p params
+    p params
     trip = Trip.create(trip_params)
     current_user.trips.push(trip)
           render :json => trip, status: 200
