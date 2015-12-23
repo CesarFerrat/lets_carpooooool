@@ -1,0 +1,66 @@
+<%- model_class = Trip -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Trip %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:origin) %></th>
+      <th><%= model_class.human_attribute_name(:destination) %></th>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:time) %></th>
+      <th><%= model_class.human_attribute_name(:seat) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:city1) %></th>
+      <th><%= model_class.human_attribute_name(:country1) %></th>
+      <th><%= model_class.human_attribute_name(:city2) %></th>
+      <th><%= model_class.human_attribute_name(:country2) %></th>
+      <th><%= model_class.human_attribute_name(:lat1) %></th>
+      <th><%= model_class.human_attribute_name(:lng1) %></th>
+      <th><%= model_class.human_attribute_name(:lat2) %></th>
+      <th><%= model_class.human_attribute_name(:lng2) %></th>
+      <th><%= model_class.human_attribute_name(:list_stops) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trips.each do |trip| %>
+      <tr>
+        <td><%= trip.id %></td>
+        <td><%= trip.origin %></td>
+        <td><%= trip.destination %></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.time %></td>
+        <td><%= trip.seat %></td>
+        <td><%= trip.price %></td>
+        <td><%= trip.description %></td>
+        <td><%= trip.city1 %></td>
+        <td><%= trip.country1 %></td>
+        <td><%= trip.city2 %></td>
+        <td><%= trip.country2 %></td>
+        <td><%= trip.lat1 %></td>
+        <td><%= trip.lng1 %></td>
+        <td><%= trip.lat2 %></td>
+        <td><%= trip.lng2 %></td>
+        <td><%= trip.list_stops %></td>
+        <td><%=l trip.created_at, format: :long %></td>
+        <td>
+          <%= link_to trip_path(trip), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to trip_path(trip), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_trip_path,
+            :class => 'btn btn-primary' %>

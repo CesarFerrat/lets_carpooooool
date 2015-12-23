@@ -8,9 +8,7 @@
 <br>
 <br>
 <br>
-
-<a href="/users/<%=current_user.id%>/showtrips"> Go back</a> |
-
+<br>
 <div class="row">
 	<div class="col-lg-2">
 	</div>
@@ -20,7 +18,7 @@
 				<div class="panel-heading">
 				<h1 class="panel-title text-center" >Trips details</h1>
 				</div>
-				<div "panel-body">
+				<div class="panel-body">
 					<div class="container">
 						<ul class="tripDetails"><br>
 							<li>Departure point: <strong><%=@trip.city1%></strong></li><br>
@@ -38,7 +36,7 @@
 				<div class="panel-heading">
 				<h1 class="panel-title text-center" >Route</h1>
 				</div>
-				<div "panel-body">
+				<div class="panel-body">
 					<div class="container">
 						<div id="map-canvas"></div>
 					</div>
@@ -57,16 +55,16 @@
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				<h1 class="panel-title text-center" ><%=current_user.email%></h1>
+				<h1 class="panel-title text-center" ></h1>
 				</div>
 				<div class="panel-body">
 						<ul class="UserDetails">
 							<li>Age: <strong>29</strong></li>
 							<li>Nationality: <strong>French</strong></li>
-							<li>email: <strong><%=current_user.email%></strong></li>
+							<li>email: <strong></strong></li>
 							<li>Member since: <strong>07/02/2014</strong></li>
 							<li>Verified ID: <strong>Yes</strong></li>
-							<li><strong><a href="/users/<%=current_user.id%>">See public profile</a></strong></li>
+							<li><strong><a >See public profile</a></strong></li>
 						</ul>
 				</div>
 			</div>
@@ -104,7 +102,7 @@
 					data.forEach(function(comment){
 						var line1 = "<div class='panel panel-default' style='padding: 10px;'>"
 						var line2 = "<div class='panel-heading'>"
-						var line3 = "<div><%=current_user.email%> wonders about: <strong>"  + comment.title + "</strong></div>"
+						var line3 = "<div>New user wonders about: <strong>"  + comment.title + "</strong></div>"
 						var line4 = '<h4><small>"' + comment.content + '"</small></h4>'
 						var line5 = "</div>"
 						var line6 = "</div>"
@@ -120,7 +118,7 @@
 	</div>
 
 	<div class="col-lg-3">
-		<% if current_user.present? %>
+
 
 			<div class="panel panel-default panel_white_trans" style="padding: 10px;">
 
@@ -135,7 +133,7 @@
 						$('.commentForm').toggle()
 					</script>
 
-					<%= form_for([current_user, @trip, @comment]) do |f| %>
+					<%= form_for([@trip, @comment]) do |f| %>
 
 					<div class="input-group">
 						<%= f.label :title, class: "form-label" %>
@@ -184,7 +182,7 @@
 				</div>
 
 			</div>
-			<% end %>
+
 	</div>
 
 	<div class="col-lg-2">
@@ -210,15 +208,16 @@ var map;
 // console.log(gon.lng2);
 
 function calcRoute() {
+	console.log("map route displayed");
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
-    zoom: 2,
-    center: chicago
-		};
+    zoom:2,
+    center: chicago,
+};
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.setMap(map);
-  console.log("Hello");
+  console.log(gon.lat1);
 
   var request = {
       origin: new google.maps.LatLng(gon.lat1,gon.lng1),
@@ -228,9 +227,7 @@ function calcRoute() {
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
-    } else{
-    	console.log("problem");
-    };
+    }
   });
 }
 </script>

@@ -7,12 +7,27 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to "My Application", defined?(root_path) ? root_path : "#", class: "navbar-brand" %>
+
+    <%= link_to (image_tag('carpool.jpg', width: "80px")), defined?(root_path) ? root_path : "#"%>
+    <%= link_to "LET'S CARPOOOOOOL!", defined?(root_path) ? root_path : "#"%>
+
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav">
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li">                       </a></li>
+      <li><a class="w-nav-link menu-li" href="#home">HOME</a></li>
+      <li><a class="w-nav-link menu-li" href="index.html#features">CONCEPT</a></li>
+      <li><a class="w-nav-link menu-li" href="index.html#service">CLIENTS</a></li>
+      <li><a class="w-nav-link menu-li" href="index.html#portfolio">HOW IT WORKS ?</a></li>
+      <li><a class="w-nav-link menu-li" href="index.html#team">TEAM</a></li>
+      <li><a class="w-nav-link menu-li" href="index.html#contact">CONTACT</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if defined?(Devise) %>

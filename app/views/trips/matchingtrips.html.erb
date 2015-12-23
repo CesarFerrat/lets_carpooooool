@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Results!</title>
+
+    <style type="text/css">
+      #map-canvas{
+          height: 200px;
+          width: 330px;
+      }
+    </style>
+
+
+  </head>
+
+  <body class="parallax">
+<br>
+<br>
+<br>
+<br>
+
+  <div id="container">
+
+        <div class="col-md-2 ">
+        </div>
+        <div class="col-md-8 ">
+          <div class="panel panel-default">
+              <div class="panel-heading text-center">
+              <form id="eventForm">
+                  <input type="hidden" id="origin" value="<%=@lat1 + ',' + @lng1%>"/>
+                  <input type="hidden" id="destination" value="<%=@lat2 + ',' + @lng2%>"/>
+                  <!-- <input type="hidden" id="country1" value="<%=@country1%>"/> -->
+                  <!-- <input type="hidden" id="country2" value="<%=@country2%>"/> -->
+                  <div >
+                      <label class="control-label" id="<%=@city1%>">From: <%=@city1%></label>
+                  </div>
+                  <div >
+                      <label class="control-label" id="<%=@city1%>">To: <%=@city2%></label>
+                  </div>
+              </form>
+            <div id="map-canvas"></div>
+          </div>
+
+
+          <div class="panel-body">
+              <div class="container">
+                <ul class="tripList">
+                </ul>
+              </div>
+          </div>
+       </div>
+
+    </div>
+<div class="col-md-2">
+</div>
+
+</div>
+
+
+
+
+
+
+
+      <div class="modal fade scroll" id="loading-indicator" background="transparent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="display_ajax">
+                <%= image_tag("ajax-loader.gif", :id => "loading-indicator") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<div class="modal fade scroll" id="login-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to Carpooling.com</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4 class="modal-title" id="myModalLabel">Already a member?</h4><br>
+         <button type="button" class="btn btn-success">Log in</button>
+        </div><br>
+        <div class="container-fluid">
+          <h4 class="modal-title" id="myModalLabel">New to Carpooling.com?</h4><br>
+         <button type="button" class="btn btn-primary">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade scroll" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Log in</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <%= render "devise/sessions/new" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade scroll" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <%= render "devise/registrations/new" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js"></script>
+<script>
+
+ $(document).ready(calcRoute);
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+// console.log(gon.lat1);
+// console.log(gon.lng1);
+// console.log(gon.lat2);
+// console.log(gon.lng2);
+
+function calcRoute() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom:2,
+    center: chicago,
+};
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  directionsDisplay.setMap(map);
+
+  var request = {
+      origin: new google.maps.LatLng(gon.lat1,gon.lng1),
+      destination: new google.maps.LatLng(gon.lat2,gon.lng2),
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+
+
+    hittingdatabase();
+    function hittingdatabase(){
+                  $.ajax({
+                      url: '/search/trips' ,
+                      type: 'GET',
+                      data: {
+                        ridecity1: '<%= params[:ridecity1] %>',
+                        ridecity2: '<%= params[:ridecity2] %>'
+                        },
+                       success: function showMatchingTrips(matching_trips) {
+                            console.log(matching_trips);
+
+                            matching_trips.forEach(function (trip) {
+
+                                html = ['<li data-hook="' + trip.id + '"><h3><a href="/trips/show/' + trip.id + '">' + trip.city1 + ' => ' + trip.city2 + ' on ' + trip.date + '</a></h3></li>'
+                                        ];
+                                $('.tripList').append(html);
+                            });
+                        }
+                  });
+
+    };
+
+
+}
+
+
+
+$('.js-submit').on('click', function(){
+
+
+
+  $('#login-signup').modal('toggle');
+
+  $('.btn-success').on('click', logIn);
+  $('.btn-primary').on('click', signUp);
+
+ }
+);
+
+
+
+function logIn() {
+  $('#login-signup').modal('toggle')
+  $('#login').modal('toggle')
+};
+
+function signUp() {
+
+  $('#login-signup').modal('toggle')
+  $('#signup').modal('toggle')
+};
+
+</script>
+  </body>
+
+
+</html>

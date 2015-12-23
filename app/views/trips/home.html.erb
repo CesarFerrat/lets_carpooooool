@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html>
+
+<head><!-- START HEAD -->
+  <meta charset="utf-8">
+  <!-- START TITLE -->
+  <title>Let's Carpooooool!</title>
+  <!-- END TITLE -->
+
+  <!-- START META, DESCRIPTION, KEYWORDS, AUTHOR -->
+  <meta name="description" content="A Template by Carino Technologies" />
+  <meta name="keywords" content="HTML, CSS, JavaScript" />
+  <meta name="author" content="carinotechnologies" />
+  <!-- END META, DESCRIPTION, KEYWORDS, AUTHOR -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- END MAGNIFIC POPUP STYLESHEET -->
+
+  <!-- LOAD GOOGLE FONT OPEN SANS -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700" rel="stylesheet" type="text/css">
+  <!-- END GOOGLE FONT OPEN SANS -->
+
+
+  <!-- START AJAX WEBFONTS -->
+  <!-- END AJAX WEBFONTS -->
+
+  <!-- START MOBILE DETECT -->
+  <script>if (/mobile/i.test(navigator.userAgent)) document.documentElement.className += ' w-mobile';</script>
+  <!-- END MOBILE DETECT -->
+
+  <!-- START FAVICON -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <!-- EDN FAVICON -->
+<!--   <link rel="stylesheet" href="app/assets/stylesheets/headhesive.css">
+ -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript">
+var location1;
+var location2;
+
+  function initialize() {
+
+      var autocomplete1 = new google.maps.places.Autocomplete(
+          (document.getElementById('autocomplete1')),
+          { types: ['geocode'] });
+      var autocomplete2 = new google.maps.places.Autocomplete(
+          (document.getElementById('autocomplete2')),
+          { types: ['geocode'] });
+      google.maps.event.addListener(autocomplete1, 'place_changed', firstPlaceChanged);
+      google.maps.event.addListener(autocomplete2, 'place_changed', secondPlaceChanged);
+
+        function firstPlaceChanged () {
+           var place1 = autocomplete1.getPlace();
+           console.log(place1);
+           lat1 = place1.geometry.location.lat().toString();
+           lng1 = place1.geometry.location.lng().toString();
+           city1 = place1.address_components[0].long_name;
+           // country1 = place1.address_components[3].short_name;
+           console.log(city1);
+           // console.log(country1);
+
+           $('#lat1').val(lat1);
+           $('#lng1').val(lng1);
+           $('#city1').val(city1);
+           // $('#country1').val(country1);
+        };
+        function secondPlaceChanged () {
+           var place2 = autocomplete2.getPlace();
+           console.log(place2);
+           lat2 = place2.geometry.location.lat().toString();
+           lng2 = place2.geometry.location.lng().toString();
+           city2 = place2.address_components[0].long_name;
+           // country2 = place2.address_components[3].short_name;
+           console.log(city2);
+           // console.log(country2);
+
+           $('#lat2').val(lat2);
+           $('#lng2').val(lng2);
+           $('#city2').val(city2);
+           // $('#country2').val(country2);
+        };
+  };
+
+
+  function initialize2() {
+
+    var autocomplete3 = new google.maps.places.Autocomplete(
+          (document.getElementById('autocomplete3')),
+          { types: ['geocode'] });
+    var autocomplete4 = new google.maps.places.Autocomplete(
+          (document.getElementById('autocomplete4')),
+          { types: ['geocode'] });
+      google.maps.event.addListener(autocomplete3, 'place_changed', firstPlaceChanged);
+      google.maps.event.addListener(autocomplete4, 'place_changed', secondPlaceChanged);
+
+        function firstPlaceChanged () {
+           var place1 = autocomplete3.getPlace();
+           console.log(place1);
+           lat1 = place1.geometry.location.lat().toString();
+           lng1 = place1.geometry.location.lng().toString();
+           city1 = place1.address_components[0].long_name;
+           // country1 = place1.address_components[3].short_name;
+           console.log(city1);
+           // console.log(country1);
+
+           $('#ridelat1').val(lat1);
+           $('#ridelng1').val(lng1);
+           $('#ridecity1').val(city1);
+           // $('#ridecountry1').val(country1);
+        };
+        function secondPlaceChanged () {
+           var place2 = autocomplete4.getPlace();
+           console.log(place2);
+           lat2 = place2.geometry.location.lat().toString();
+           lng2 = place2.geometry.location.lng().toString();
+           city2 = place2.address_components[0].long_name;
+           // country2 = place2.address_components[3].short_name;
+           console.log(city2);
+           // console.log(country2);
+
+           $('#ridelat2').val(lat2);
+           $('#ridelng2').val(lng2);
+           $('#ridecity2').val(city2);
+           // $('#ridecountry2').val(country2);
+        };
+  };
+
+
+// $('#sign-in').on('click', function(){
+//   console.log("hello");
+
+//   $('#login-signup').modal('toggle');
+
+//   $('.btn-success').on('click', logIn);
+//   $('.btn-primary').on('click', signUp);
+
+//  }
+// );
+
+function alreadyMember() {
+  $('#login-signup').modal('toggle');
+
+  $('.btn-success').on('click', logIn);
+  $('.btn-primary').on('click', signUp);
+
+
+}
+
+function logIn() {
+  $('#login-signup').modal('toggle')
+  $('#login').modal('toggle')
+};
+
+function signUp() {
+
+  $('#login-signup').modal('toggle')
+  $('#signup').modal('toggle')
+};
+
+    </script>
+
+  <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+</head><!-- END HEAD -->
+<body onload="initialize(), initialize2()"> <!-- START BODY TAG -->
+
+  <!-- START HEADER -->
+  <!-- SCROLL DIV #boxscroll by nicescroll -->
+
+<div tabindex="1000" style="overflow-y: auto;" id="boxscroll">
+
+
+<!-- CHANGEABLE UNIQUE SECTOIN ID -->
+<section id="home" style="position:absolute; top:0px ">
+
+  <!-- START FIXED HEADER DIV -->
+  <div class="banner">
+    <!-- START CONTAINER -->
+    <div class="w-container container">
+      <div class="w-row">
+
+        <!-- START COLUMN 3 -->
+        <div class="w-col w-col-3 logo">
+          <!-- START LOGO -->
+          <a href="#"><img class="logo" src="/assets/carpool.jpg" ></a> <strong>LET'S CARPOOL</strong>
+          <!-- END LOGO -->
+        </div><!-- END COLUMN 3 -->
+
+        <!-- START COLUMN 9 -->
+        <div class="w-col w-col-9">
+
+          <!-- START NAVIGATION -->
+          <div class="w-nav navbar" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
+            <div class="w-container nav"><!-- START CONTAINER -->
+
+              <!-- START NAVIGATION LINKS -->
+              <nav class="w-nav-menu nav-menu" role="navigation">
+
+                <a class="w-nav-link menu-li" href="#home">HOME</a>
+                <a class="w-nav-link menu-li" href="index.html#features">CONCEPT</a>
+                <a class="w-nav-link menu-li" href="index.html#service">CLIENTS</a>
+                <a class="w-nav-link menu-li" href="index.html#portfolio">HOW IT WORKS ?</a>
+                <a class="w-nav-link menu-li" href="index.html#team">TEAM</a>
+                <a class="w-nav-link menu-li" href="index.html#contact">CONTACT</a>
+                <button id="sign-in" onclick="alreadyMember()" class="btn btn-primary">SIGN-IN</button>
+
+              </nav>
+              <!-- END NAVIGATION LINKS -->
+
+              <!-- START MOBILE NAVIGATION BUTTON * DO NOT DELETE THIS DIV* -->
+              <div class="w-nav-button">
+                <div class="w-icon-nav-menu"></div>
+              </div><!-- END MOBILE NAVIGATION BUTTON -->
+
+            </div>
+            <!-- END CONTAINER -->
+          </div>
+          <!-- END NAVIGATION -->
+        </div>
+        <!-- END COLUMN 9 -->
+      </div>
+    </div>
+    <!-- END CONTAINER -->
+  </div>
+ <!-- END FIXED HEADER DIV -->
+</section>
+<!-- END SECTION -->
+<!-- END HEADER -->
+
+<div class="header-parallax" data-stellar-background-ratio="0.5">
+<div class="slidersection">
+
+<div class="overlay">
+
+  <div class="modal backdrop fade scroll" id="login-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to Carpooling.com</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h4 class="modal-title" id="myModalLabel">Already a member?</h4><br>
+         <button type="button" class="btn btn-success">Log in</button>
+        </div><br>
+        <div class="container-fluid">
+          <h4 class="modal-title" id="myModalLabel">New to Carpooling.com?</h4><br>
+         <button type="button" class="btn btn-primary">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade scroll" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Log in</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <%= render "devise/sessions/new" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade scroll" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <%= render "devise/registrations/new" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- <div class="row"> -->
+
+      <div class="center-fix">
+      <h1 class="underline animated fadeInDown">Post a trip!</h1>
+        <form id="tripForm" method="post" action="/trips/form" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-xs-3 control-label">From: </label>
+                <div class="col-xs-5">
+                    <input type="textarea" id="autocomplete1" class="form-control" placeholder="Enter origin"/>
+                    <input type="hidden" id="lat1" name="lat1"/>
+                    <input type="hidden" id="lng1" name="lng1"/>
+                    <input type="hidden" id="city1" name="city1"/>
+                    <!-- <input type="hidden" id="country1" name="country1"/> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">To: </label>
+                <div class="col-xs-5">
+                    <input type="text" id="autocomplete2" class="form-control" placeholder="Enter destination"/>
+                    <input type="hidden"  id="lat2" name="lat2"/>
+                    <input type="hidden"  id="lng2" name="lng2"/>
+                    <input type="hidden" id="city2" name="city2"/>
+                    <!-- <input type="hidden" id="country2" name="country2"/> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-3">
+                    <button type="submit" id="js-submit" class="btn btn-primary">Add trip!</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    <!-- </div> -->
+    <!-- <div class="row"><br> -->
+      <div class="center-fix">
+        <h1 class="underline animated fadeInDown">Look for a ride!</h1>
+          <form id="rideForm" method="post" action="/trips/matchingtrips" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-xs-3 control-label">From: </label>
+                <div class="col-xs-5">
+                    <input type="text" id="autocomplete3" class="form-control" placeholder="Enter origin"/>
+                    <input type="hidden" id="ridelat1" name="ridelat1"/>
+                    <input type="hidden" id="ridelng1" name="ridelng1"/>
+                    <input type="hidden" id="ridecity1" name="ridecity1"/>
+                    <!-- <input type="hidden" id="ridecountry1" name="ridecountry1"/> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">To: </label>
+                <div class="col-xs-5">
+                    <input type="text" id="autocomplete4" class="form-control" placeholder="Enter destination"/>
+                    <input type="hidden"  id="ridelat2" name="ridelat2"/>
+                    <input type="hidden"  id="ridelng2" name="ridelng2"/>
+                    <input type="hidden" id="ridecity2" name="ridecity2"/>
+                    <!-- <input type="hidden" id="ridecountry2" name="ridecountry2"/> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-3">
+                    <button type="submit" id="js-submit" class="btn btn-primary">Search !</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    <!-- </div> -->
+</div>
+</div>
+</div>
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End slider section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+  <div id="features">
+
+    <div class="row-back">
+
+      <div class="w-container wrap">
+
+          <div class="center">
+
+            <h2 class="underline">OUR CORE <span class="green">FUNCTION</span></h2>
+
+            <h4><strong class="green">Changing</strong> the way people travel</h4>
+
+          </div>
+
+          <div class="w-col w-col-4 wp1">
+
+            <div class="icon-box">
+
+              <i class="cupelegance-icons-"></i>
+
+              <h4 class="icons-heading">CLEAN DESIGN</h4>
+
+              <p>
+
+               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-4 wp1 delay-05s">
+
+            <div class="icon-box">
+
+              <i class="paramselegance-icons-"></i>
+
+              <h4 class="icons-heading">FAST SUPPORT</h4>
+
+              <p>
+
+               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-4 wp1 delay-1s">
+
+            <div class="icon-box">
+
+              <i class="thumbs-upelegance-icons-"></i>
+
+              <h4 class="icons-heading">100% RESPONSIVE</h4>
+
+              <p>
+
+               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+  <!-- <div class="row-gree">
+
+      <div class="w-container wrap-normal">
+
+          <div class="center">
+
+            <h1 class="underline">our progress</h1>
+
+            <h4>This is how we work at <strong class="red">FLAT ASPHALT</strong>, do you want to see.</h4>
+
+            <p>lorem ipsum metea data, what a lovely traeat to eyes</p>
+
+          </div>
+
+        </div>
+
+    </div>
+
+  </div> -->
+
+ <!--  <div class="parallax-back" data-stellar-background-ratio="0.5">
+
+    <div class="opcaity">
+
+      <div class="w-container wrap-normal">
+
+         <div class="w-col w-col-3 wp2">
+
+            <div class="icon-box">
+
+              <i class="cogelegance-icons-"></i>
+
+                <h2><strong><span class="red">50%</span></strong></h2>
+
+                <h4>Logic</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+
+              </div>
+
+            </div>
+
+            <div class="w-col w-col-3 wp2 delay-05s">
+
+            <div class="icon-box">
+
+              <i class="paper-planeelegance-icons-"></i>
+
+                <h2><strong><span class="red">70%</span></strong></h2>
+
+                <h4>Support</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+
+              </div>
+
+            </div>
+
+            <div class="w-col w-col-3 wp2 delay-1s">
+
+            <div class="icon-box">
+
+              <i class="cloudelegance-icons-"></i>
+
+                <h2><strong><span class="red">90%</span></strong></h2>
+
+                <h4>Cloud Service</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+
+              </div>
+
+            </div>
+
+            <div class="w-col w-col-3 wp2 delay-1-5s">
+
+            <div class="icon-box">
+
+              <i class="win8elegance-icons-"></i>
+
+                <h2><strong><span class="red">100%</span></strong></h2>
+
+                <h4>Hosting Service</h4>
+
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+
+    </div> -->
+
+
+
+
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Service section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+
+<!--
+  <div id="service">
+
+    <div class="row-gree">
+
+      <div class="w-container wrap">
+        <div class="center">
+          <h1 class="underline">OUR SERVICE</h1>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="row-back">
+
+      <div class="w-container wrap-normal">
+
+        <div class="center">
+
+        <h2>WHAT <span class="green">WE</span> DO</h2>
+
+        <p>lorem ipsum metea data, what a lovely traeat to eyes</p>
+
+      </div>
+
+      <div class="w-col w-col-6">
+
+            <div class="right wp8">
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <a class="button wp8 delay-05s">Read More</a>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-6">
+
+            <div class="left wp7">
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <a class="button border wp7 delay-05s">Buy Now!</a>
+
+            </div>
+
+          </div>
+
+          <div class="spacing"></div>
+
+          <div class="w-col w-col-3">
+
+            <div class="icon-box">
+
+              <img src="assets/services/branding.png" alt="branding">
+
+              <h3 class="underline">branding</h3>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-3">
+
+            <div class="icon-box">
+
+              <img src="assets/services/motion.png" alt="motion">
+
+              <h3 class="underline">motion</h3>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-3">
+
+            <div class="icon-box">
+
+              <img src="assets/services/print.png" alt="print">
+
+              <h3 class="underline">print</h3>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+            </div>
+
+          </div>
+
+          <div class="w-col w-col-3">
+
+            <div class="icon-box">
+
+              <img src="assets/services/Web.png" alt="Web">
+
+              <h3 class="underline">Web Design</h3>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+            </div>
+
+          </div>
+
+  </div>
+
+</div>
+
+  </div>
+ -->
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Service section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Process section
+
+       //////////////////////////////////////////////////////////-->
+
+
+<div id="service">
+  <div class="parallax-back" data-stellar-background-ratio="0.5">
+
+    <div class="opcaity">
+
+      <div class="w-container wrap-normal">
+
+        <div class="center">
+
+          <h1 class="underline">Our Happy Customers</h1>
+
+          <p>See what some of our prestigious <strong class="green">clients</strong> say about us</p>
+
+        </div>
+
+        <div class="main">
+
+        <div id="cbp-qtrotator" class="cbp-qtrotator">
+
+          <div class="cbp-qtcontent">
+
+            <img src="assets/testimonials/image1.png" alt="img01" />
+
+            <blockquote>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <footer>Pino Caruso</footer>
+
+            </blockquote>
+
+          </div>
+
+          <div class="cbp-qtcontent">
+
+            <img src="assets/testimonials/image2.png" alt="img02" />
+
+            <blockquote>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <footer>Albert Einstein</footer>
+
+            </blockquote>
+
+          </div>
+
+          <div class="cbp-qtcontent">
+
+            <img src="assets/testimonials/image3.png" alt="img03" />
+
+            <blockquote>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <footer>Moby</footer>
+
+            </blockquote>
+
+          </div>
+
+          <div class="cbp-qtcontent">
+
+            <img src="assets/testimonials/image1.png" alt="img04" />
+
+            <blockquote>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut exercitation ullamco labore et dolore magna aliqua.</p>
+
+              <footer>Leonardo Da Vinci</footer>
+
+            </blockquote>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Process section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Porfolio section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+  <div id="portfolio">
+
+    <div class="row-gree">
+
+      <div class="w-container wrap">
+
+        <div class="center">
+
+          <h1 class="underline">SEE OUR WORK</h1>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row-back">
+
+      <div class="w-container wrapper">
+
+        <div class="pricing-table">
+
+          <div class="w-co w-col-3 wp3">
+
+            <div class="pricing-section">
+
+              <div class="pricing-header">
+
+                <h3>ENTERPRISE</h3>
+
+                <span class="preice">$59 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-05s">
+
+            <div class="pricing-section pricing-main">
+
+              <div class="pricing-header header-main">
+
+                <h3>PROFESSIONAL</h3>
+
+                <span class="preice">$29 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer footer-main">
+
+                <a class="button">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-1s">
+
+            <div class="pricing-section">
+
+              <div class="pricing-header">
+
+                <h3>STANDARD</h3>
+
+                <span class="preice">$19 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-1-5s">
+
+            <div class="pricing-section last">
+
+              <div class="pricing-header">
+
+                <h3>BASIC</h3>
+
+                <span class="preice">$9 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Porfolio section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Our-plan section
+
+       //////////////////////////////////////////////////////////-->
+
+    <!-- <div class="row-gree">
+
+      <div class="w-container wrap-normal">
+
+        <div class="center">
+
+          <h1 class="underline">OUR PRICING PLANS</h1>
+
+          <p>Check our <strong class="red">competitive</strong> prices for our products.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row-back">
+
+      <div class="w-container wrapper">
+
+        <div class="pricing-table">
+
+          <div class="w-co w-col-3 wp3">
+
+            <div class="pricing-section">
+
+              <div class="pricing-header">
+
+                <h3>ENTERPRISE</h3>
+
+                <span class="preice">$59 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-05s">
+
+            <div class="pricing-section pricing-main">
+
+              <div class="pricing-header header-main">
+
+                <h3>PROFESSIONAL</h3>
+
+                <span class="preice">$29 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer footer-main">
+
+                <a class="button">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-1s">
+
+            <div class="pricing-section">
+
+              <div class="pricing-header">
+
+                <h3>STANDARD</h3>
+
+                <span class="preice">$19 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="w-co w-col-3 wp3 delay-1-5s">
+
+            <div class="pricing-section last">
+
+              <div class="pricing-header">
+
+                <h3>BASIC</h3>
+
+                <span class="preice">$9 / Per Month</span>
+
+              </div>
+
+              <div class="pricing-content">
+
+                <ul>
+
+                  <li>Cras dapibus vivamus elementum</li>
+
+                  <li>Semper nisi aenean vulputate</li>
+
+                  <li>Tellus aenean leo ligula porttitor</li>
+
+                  <li>Consequat vitae eleifend ac enim</li>
+
+                </ul>
+
+              </div>
+
+              <div class="pricing-footer">
+
+                <a class="button border">Purchase Now</a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+    </div>
+  </div>
+ -->
+
+<!--///////////////////////////////////////////////////////
+
+       // End Our-Plan section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Team section
+
+       //////////////////////////////////////////////////////////-->
+<div id="team">
+ <div class="row-gree" id="team">
+  <div class="w-container wrap">
+    <h1 class="center underline">MEET THE TEAM</h1>
+  </div>
+ </div>
+
+  <div class="row-back">
+      <div class="w-container wrap-normal">
+        <div class="center">
+          <h2>our assets</h2>
+          <p>A proud group of <strong class="green">individuals</strong> who came together in a perfect unity to present you with this.</p>
+        </div>
+        <div class="center w-col w-col-3 wp4">
+          <div class="team-album">
+            <div class="tumbnail">
+              <a class="team-hyper">
+              <img class="thumbnail-img" src="/assets/1.jpg" alt="team1">
+              <span>
+                <h3 class="team-heading">Brad Pitt</h3>
+                <p class="team-designation">CEO</p>
+                <p class="team-des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellat possimus laboriosam et.</p>
+              </span>
+            </a>
+            <div class="team-social">
+                <a class="social-icons" href="" titlle="Facebook"><i class="facebookelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Twitter"><i class="twitter-birdelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Linkedin"><i class="linkedinelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Google+"><i class="googleplus-rectelegance-icons-"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center w-col w-col-3 wp4 delay-05s">
+          <div class="team-album">
+            <div class="tumbnail">
+              <a class="team-hyper">
+              <img class="thumbnail-img" src="/assets/2.jpg" alt="team1">
+              <span>
+                <h3 class="team-heading">George Clooney</h3>
+                <p class="team-designation">COO</p>
+                <p class="team-des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellat possimus laboriosam et.</p>
+              </span>
+            </a>
+            <div class="team-social">
+                <a class="social-icons" href="" titlle="Facebook"><i class="facebookelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Twitter"><i class="twitter-birdelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Linkedin"><i class="linkedinelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Google+"><i class="googleplus-rectelegance-icons-"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center w-col w-col-3 wp4 delay-1s">
+          <div class="team-album">
+            <div class="tumbnail">
+              <a class="team-hyper">
+              <img class="thumbnail-img" src="/assets/3.jpg" alt="team1">
+              <span>
+                <h3 class="team-heading">James Franco</h3>
+                <p class="team-designation">CREATIVE DIRECTOR</p>
+                <p class="team-des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellat possimus laboriosam et.</p>
+              </span>
+            </a>
+            <div class="team-social">
+                <a class="social-icons" href="" titlle="Facebook"><i class="facebookelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Twitter"><i class="twitter-birdelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Linkedin"><i class="linkedinelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Google+"><i class="googleplus-rectelegance-icons-"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center w-col w-col-3 wp4 delay-1-5s">
+          <div class="team-album">
+            <div class="tumbnail">
+              <a class="team-hyper">
+              <img class="thumbnail-img" src="/assets/4.jpg" alt="team1">
+              <span>
+                <h3 class="team-heading">Barack Obama</h3>
+                <p class="team-designation">President of Marketing</p>
+                <p class="team-des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum repellat possimus laboriosam et.</p>
+              </span>
+            </a>
+            <div class="team-social">
+                <a class="social-icons" href="" titlle="Facebook"><i class="facebookelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Twitter"><i class="twitter-birdelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Linkedin"><i class="linkedinelegance-icons-"></i></a>
+                <a class="social-icons" href="" titlle="Google+"><i class="googleplus-rectelegance-icons-"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+
+
+  </div>
+</div>
+
+<div class="parallax-back"  data-stellar-background-ratio="0.5">
+      <div class="opcaity">
+  <div class="w-container wrap">
+     <div class="w-col w-col-4">
+          <div class="center">
+            <h3>NOBODY’S <span class="green">PERFECT.</span> THAT DOESN’T MEAN WE WON’T TRY!</h3>
+          </div>
+        </div>
+        <div class="w-col w-col-4">
+          <div class="center">
+            <div class="circule circule-info"><p class="info"><strong class="info-strong">99%</strong><br/>CLIENT<br/>SATISFACTION</p></div>
+          </div>
+        </div>
+        <div class="w-col w-col-4">
+          <div class="center">
+            <h3 class="info-x">WANT TO KNOW HOW WE CAN HELP YOU? <br/><a href="mailto:INFO@elgance.COM"><span class="email">INFO@LETSCARPOOL.COM</span></a></h3>
+          </div>
+        </div>
+  </div>
+</div>
+</div>
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Team section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Clients section
+
+       //////////////////////////////////////////////////////////-->
+
+<!-- <div class="row-gree">
+  <div class="w-container wrap-normal">
+    <div class="center">
+      <h1 class="underline">OUR CLIENTS</h1>
+    </div>
+  </div>
+</div>
+
+  <div class="row-back">
+
+      <div class="w-container wrap-normal">
+
+          <div class="center">
+            <h2>A BRIEF OVERVIEW OF OUR CLIENTS</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+          </div>
+
+          <div class="clients-sub">
+
+            <div id="clients">
+
+        <div class="clients-wrap">
+
+          <ul id="clients-list" class="clearfix">
+
+            <li><img src="assets/clients/logo1.png" alt="logo"></li>
+
+            <li><img src="assets/clients/logo2.png" alt="logo"></li>
+
+            <li><img src="assets/clients/logo3.png" alt="logo"></li>
+
+            <li><img src="assets/clients/logo4.png" alt="logo"></li>
+
+          </ul> -->
+
+       <!--  </div> --><!-- @end .clients-wrap -->
+
+      <!-- </div> --><!-- @end #clients -->
+<!--
+          </div>
+
+
+      </div>
+
+
+  </div>
+ -->
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Clients section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Contact section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+  <div id="contact">
+
+    <div class="parallax-back"  data-stellar-background-ratio="0.5">
+      <div class="opcaity">
+      <div class="w-container wrap">
+
+                  <div class="center">
+                    <h1 class="underline">GET IN TOUCH</h1>
+                    <p>Feel free to contact us at any time</p>
+                    <!-- <div class="social-footter">
+                      <i class="facebookelegance-icons-"></i>
+                      <i class="twitter-birdelegance-icons-"></i>
+                      <i class="vimeoelegance-icons-"></i>
+                      <i class="friendfeedelegance-icons-"></i>
+                      <i class="deviantartelegance-icons-"></i>
+                      <i class="lastfmelegance-icons-"></i>
+                      <i class="linkedinelegance-icons-"></i>
+                      <i class="picasaelegance-icons-"></i>
+                      <i class="wordpresselegance-icons-"></i>
+                      <i class="instagramelegance-icons-"></i>
+                      <i class="tumblrelegance-icons-"></i>
+                    </div> -->
+
+          <div class="w-form">
+
+            <form action="contact.php" method="post">
+
+            <label for="name"></label>
+
+             <input class="w-input" type="text" id="name" placeholder="Enter your name" name="cf_name">
+
+           <label for="email"></label>
+
+             <input class="w-input" placeholder="Enter your email address" type="text"  id="email" name="cf_email" required="required">
+
+           <label for="message"></label>
+
+             <textarea class="w-input message" placeholder="Enter your Message Here" id="message" name="cf_message"></textarea><br>
+
+           <input class="button medium" type="submit" value="Send">
+
+         </form>
+
+          <div class="w-form-done">
+
+              <p>Thank you! Your submission has been received!</p>
+
+            </div>
+
+            <div class="w-form-fail">
+
+              <p>Oops! Something went wrong while submitting the form :(</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="w-widget w-widget-map contac-map" data-widget-latlng="37.782163,-122.400591" data-widget-style="roadmap" data-widget-zoom="25" data-widget-tooltip="Carino Headquater"></div> -->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // End Contact section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+<!--///////////////////////////////////////////////////////
+
+       // Footer section
+
+       //////////////////////////////////////////////////////////-->
+
+
+
+ <div class="footer row-back">
+  <div class="w-container wrap-normal center">© <strong>CESAR Technologies</strong> 2015</div>
+
+       <!--///////////////////////////////////////////////////////
+
+       // End Footer section
+
+       //////////////////////////////////////////////////////////-->
+</div>
+
+  <!-- END JQUERY PLUGINS LOAD -->
+
+</body>
+
+</html>

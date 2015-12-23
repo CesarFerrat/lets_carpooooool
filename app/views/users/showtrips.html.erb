@@ -1,0 +1,136 @@
+<body class="parallax">
+<br>
+<br>
+<br>
+<a href="/users/<%=current_user.id%>/"> Go back</a> |
+
+
+
+
+
+	<div class="col-lg-3">
+	</div>
+		<div class="col-lg-6">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				<h1 class="panel-title text-center" >Here are all your trips:</h1>
+				</div>
+				<div "panel-body">
+					<div class="container-fluid">
+						<ul class="tripList">
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="col-lg-3">
+	</div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script>
+$(document).ready(getTrips);
+
+function getTrips(){
+	var request = $.get('/users/<%=current_user.id%>/gettrips');
+
+  	function showTrips(trips) {
+  		console.log(trips);
+
+    	trips.forEach(function (trip) {
+
+    		 html = ['<li data-hook="' + trip.id + '"><h3><a href="/users/<%=current_user.id%>/trips/' + trip.id + '">' + trip.city1 + ' => ' + trip.city2 + ' </a><button data-hook="delete-trip" class="btn btn-danger" id="'+ trip.id +'"> x </button></h3></li>'
+			      	];
+				     $('.tripList').append(html);
+    	});
+    	$('[data-hook~="delete-trip"]').on('click', function(event) {
+
+    	    var tripID = event.target.id;
+    	    console.log(tripID);
+    	    var request = $.ajax({
+    	          url: '/removeTrip/'+ tripID ,
+    	          type: 'DELETE',
+    	           success: function(){ $('li[data-hook="' + tripID + '"]').remove()}
+    	    });
+    	});
+  	};
+
+  	function handleError (err1, err2, err3) {
+    console.error('Unfortunately an Error occured', err1, err2, err3);
+  	}
+
+  request.done(showTrips);
+  request.fail(handleError);
+};
+
+
+
+</script>
+
+<script>
+// 	setTimeout(function(){
+
+		// 	var html = [
+
+		// 	        '<li><a class="trip-details" href="/users/<%=current_user.id%>/trips/trip"></a></li>' ];
+		// 	      $('.trip').append(html);
+
+		// 	var geocoder = new google.maps.Geocoder();
+
+		// 	var latlngStrorigin = trip.origin.split(',', 2);
+		// 	var latlng = new google.maps.LatLng(latlngStrorigin[0], latlngStrorigin[1]);
+		// 	var city1 = "";
+		// 	var country1 = "";
+		// 	geocoder.geocode({'latLng': latlng}, function(results, status) {
+		// 	if (status == google.maps.GeocoderStatus.OK) {
+		// 		var result = results[0];
+		// 		for(var i=0, len=result.address_components.length; i<len; i++) {
+		// 			var details = result.address_components[i];
+		// 			if(details.types.indexOf("locality") >= 0){
+		// 			 city1 = details.long_name;
+		// 			 console.log(city1);
+		// 			};
+		// 			if(details.types.indexOf("country") >= 0){
+		// 			 country1 = details.long_name;
+		// 			};
+		// 		};
+		// 		 htmlPartone = ['<li><a class="trip-details" href="/users/<%=current_user.id%>/trips/trip">' +
+		// 	        city1 + ', ' + country1 +  ' => '
+		// 	      	];
+		// 	}else {
+  //     			window.alert('Geocoder failed due to: ' + status);
+		// 	};
+
+		// 		setTimeout(function(){
+		// 		var geocoder = new google.maps.Geocoder();
+
+		// 		var latlngStrdestination = trip.destination.split(',', 2);
+		// 		var latlng = new google.maps.LatLng(latlngStrdestination[0], latlngStrdestination[1]);
+		// 		var city2 = "";
+		// 		var country2 = "";
+		// 		geocoder.geocode({'latLng': latlng}, function(results, status) {
+		// 		if (status == google.maps.GeocoderStatus.OK) {
+		// 			var result = results[0];
+		// 			for(var i=0, len=result.address_components.length; i<len; i++) {
+		// 				var details = result.address_components[i];
+		// 				if(details.types.indexOf("locality") >= 0){
+		// 				 city2 = details.long_name;
+		// 				 console.log(city2);
+		// 				};
+		// 				if(details.types.indexOf("country") >= 0){
+		// 				 country2 = details.long_name;
+		// 				};
+		// 			};
+		// 			var rest_details = [
+		// 		        city2 + ', ' + country2 +  "</a></li>"
+		// 		      	];
+		// 		     $('.tripList').append(htmlPartone + rest_details);
+		// 		}else {
+	 //      			window.alert('Geocoder failed due to: ' + status);
+		// 		}});
+		// 		}, 5000);
+		// 		});
+		// }, 3000);
+</script>
