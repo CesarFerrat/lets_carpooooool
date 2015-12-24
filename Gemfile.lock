@@ -263,4 +263,4 @@ DEPENDENCIES
   validates_formatting_of
 
 BUNDLED WITH
-   1.11.0
+   1.11.2
