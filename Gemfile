@@ -49,6 +49,9 @@ gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'binding_of_caller'
 gem 'bootstrap-sass', '3.3.5'
 gem 'bootstrap-sass-extras'
+
+gem 'font-awesome-sass', '~> 4.4.0'
+
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
