@@ -17,6 +17,7 @@ var map;
 // console.log(gon.lng2);
 
 function calcRoute() {
+  $('#warning-message').modal('toggle');
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
@@ -132,7 +133,16 @@ function calcRoute() {
     </div>
   </div>
 </div>
-
+<div class="modal fade scroll" id="warning-message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Please fill up every trips details !!!</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 
 $('input[type=radio]').on('change', function () {
@@ -160,7 +170,7 @@ $('.js-submit').on('click', function(){
   price: $('#price').val(),
   description: $('#description').val(),
   };
-  
+
   localStorage.setItem("new-trip", JSON.stringify(new_trip));
 
 <% if user_signed_in? %>
