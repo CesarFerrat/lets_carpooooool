@@ -52,6 +52,8 @@ gem 'bootstrap-sass-extras'
 
 gem 'font-awesome-sass', '~> 4.4.0'
 
+gem 'gon'
+
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

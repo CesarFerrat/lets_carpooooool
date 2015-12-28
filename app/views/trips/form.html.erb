@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Add a trip!</title>
-
-    <style type="text/css">
+<style type="text/css">
       #map-canvas{
           height: 350px;
           width: 400px;
       }
-    </style>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    <script type="text/javascript">
+</style>
+<script type="text/javascript">
 
 $(document).ready(calcRoute);
 
@@ -43,13 +37,9 @@ function calcRoute() {
     }
   });
 }
+</script>
 
-    </script>
-
-  </head>
-<style>
-</style>
-  <body class="parallax">
+<body class="parallax">
 <br>
 <br>
 <br>
@@ -70,19 +60,19 @@ function calcRoute() {
           <input type="hidden" id="city2" value="<%=@city2%>"/>
           <!-- <input type="hidden" id="country2" value="<%=@country2%>"/> -->
           <div class="form-group">
-              <label class="col-xs-3 control-label">Date: </label>
+              <label class="col-xs-5 control-label">Date: </label>
               <div class="col-xs-5">
                   <input type="date" class="form-control" id="date"/>
               </div>
           </div>
           <div class="form-group">
-              <label class="col-xs-3 control-label">Start Time: </label>
+              <label class="col-xs-5 control-label">Start Time: </label>
               <div class="col-xs-5">
                   <input type="time" class="form-control" id="time"/>
               </div>
           </div>
           <div class="form-group">
-              <label class="col-xs-3 control-label">Space: </label>
+              <label class="col-xs-5 control-label">Space: </label>
               <div class="col-xs-5">
                   1 seat     <input type="radio" name="seat" value="1"/><br>
                   2 seats    <input type="radio" name="seat" value="2"/><br>
@@ -92,20 +82,20 @@ function calcRoute() {
               </div>
           </div>
           <div class="form-group">
-              <label class="col-xs-3 control-label">Price per seat: </label>
+              <label class="col-xs-5 control-label">Price per seat: </label>
               <div class="col-xs-5">
                   <input type="number" class="form-control" id="price"/>
               </div>
           </div>
           <div class="form-group">
-              <label class="col-xs-3 control-label">Trip details: </label>
+              <label class="col-xs-5 control-label">Trip details: </label>
               <div class="col-xs-5">
                   <textarea class="form-control" id="description" placeholder="Details..."></textarea>
               </div>
           </div>
           <div class="form-group">
-              <div class="col-xs-5 col-xs-offset-3">
-                  <a href="#" type="button" class="js-submit btn btn-primary" >Add trip!</a>
+              <div class="col-xs-5 col-xs-offset-5">
+                  <button type="button" class="js-submit btn btn-primary" >Add trip!</button>
               </div>
           </div>
       </form>
@@ -118,56 +108,31 @@ function calcRoute() {
   </div>
 
 
-<div class="modal fade scroll " id="login-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade scroll" id="login-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Welcome to Carpooling.com</h4>
+        <h4 class="modal-title" id="myModalLabel">Welcome to Let's Carpooooool</h4>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
+          <form id="tripForm" method="get" action="/login" class="form-horizontal">
           <h4 class="modal-title" id="myModalLabel">Already a member?</h4><br>
-         <button type="button" class="btn btn-success">Log in</button>
+          <button type="submit" class="btn btn-success">Log in</button>
+          </form>
         </div><br>
         <div class="container-fluid">
-          <h4 class="modal-title" id="myModalLabel">New to Carpooling.com?</h4><br>
-         <button type="button" class="btn btn-primary">Sign up</button>
+          <form id="tripForm" method="get" action="/signup" class="form-horizontal">
+          <h4 class="modal-title" id="myModalLabel">New here?</h4><br>
+          <button type="submit" class="btn btn-primary">Sign up</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade scroll" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Log in</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <%= render "devise/sessions/new" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade scroll" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <%= render "devise/registrations/new" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <script>
 
 $('input[type=radio]').on('change', function () {
@@ -195,32 +160,22 @@ $('.js-submit').on('click', function(){
   price: $('#price').val(),
   description: $('#description').val(),
   };
-  console.log(new_trip);
-  window.sessionStorage.setItem("new-trip", JSON.stringify(new_trip));
+  
+  localStorage.setItem("new-trip", JSON.stringify(new_trip));
+
+<% if user_signed_in? %>
+
+
+ window.location.replace("<%= escape_javascript(user_path(@user.id)) %>");
+
+<% else %>
 
   $('#login-signup').modal('toggle');
 
-  $('.btn-success').on('click', logIn);
-  $('.btn-primary').on('click', signUp);
+<% end %>
 
  }
 );
 
-
-
-function logIn() {
-  $('#login-signup').modal('toggle')
-  $('#login').modal('toggle')
-};
-
-function signUp() {
-
-  $('#login-signup').modal('toggle')
-  $('#signup').modal('toggle')
-};
-
 </script>
-  </body>
-
-
-</html>
+</body>

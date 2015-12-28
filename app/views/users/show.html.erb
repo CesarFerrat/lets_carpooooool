@@ -2,7 +2,6 @@
 <br>
 <br>
 <body class="parallax">
-<%=@title%>
 
 <a href="/" class="btn btn-primary">Profile</a>
 <a href="/users/<%=current_user.id%>/showtrips" class="btn btn-primary">Trips</a>
@@ -18,16 +17,13 @@
               <div id="display_ajax"> Loading Trip details, Thanks for your patience !
                 <%= image_tag("ajax-loader.gif", :id => "loading-indicator") %>
               </div>
-              <div id="map-canvas">
+              <div id="map-canvas" hidden>
               </div>
-            </div>
           </div>
         </div>
       </div>
 </div>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js"></script>
 <style type="text/css">
       #map-canvas{
           height: 300px;
@@ -39,22 +35,22 @@ $(document).ready(addTrip);
 
 function addTrip () {
 
-    if (sessionStorage.length > 0) {
+    if (localStorage.getItem("new-trip") !== null) {
 
-      var saved_new_trip = JSON.parse(window.sessionStorage.getItem("new-trip"));
+      var saved_new_trip = JSON.parse(localStorage.getItem("new-trip"));
 
-      var request = $.post('/users/<%=current_user.id%>/trips', saved_new_trip);
+      var request = $.post('/users/<%=current_user.id%>/createtrips', saved_new_trip);
 
                        function onSaveSuccess (response) {
                          console.debug('saved!', response);
-                         sessionStorage.clear();
+                         localStorage.removeItem("new-trip");
                          calcRoute(saved_new_trip, response.id);
                        }
 
                        function onSaveFailure (err) {
                          console.error(err.responseJSON);
                        }
-
+                       console.log(saved_new_trip);
                        request.done(onSaveSuccess);
                        request.fail(onSaveFailure);
 
@@ -218,7 +214,7 @@ function calcRoute(saved_new_trip, trip_id) {
   });
 
   function createRouteBoxes(overview_path) {
-    var boxes = routeBoxer.box(overview_path, 3);
+    var boxes = routeBoxer.box(overview_path, 1);
     // find places in each box
     getNearbyPlaces(boxes, 0);
   };
@@ -244,7 +240,7 @@ function calcRoute(saved_new_trip, trip_id) {
         console.log('Over query limit; waiting 1 second');
         setTimeout(function() {
           getNearbyPlaces(boxes, i);
-        }, 1000);
+        }, 1500);
       } else {
         console.log('ERROR: ' + status);
         getNearbyPlaces(boxes, i+1);
@@ -273,7 +269,7 @@ function calcRoute(saved_new_trip, trip_id) {
                   city: city
                 },
                  success: function(all_trips){
-                 console.log(all_trips);
+
                  trips_all_arr.push(all_trips);
 
                   }

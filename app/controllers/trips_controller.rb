@@ -3,8 +3,7 @@ class TripsController < ApplicationController
   #->Prelang (scaffolding:rails/scope_to_user)
   before_filter :require_user_signed_in, only: [:new, :edit, :create, :update, :destroy]
 
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token, only: [:form, :matchingTrips]
 
   def home
 		@user = User.new
@@ -15,10 +14,23 @@ class TripsController < ApplicationController
   	@trips = @user.trips
   end
 
+  def createTrips
+    p params
+    trip = Trip.create(trip_params)
+    current_user.trips.push(trip)
+          render :json => trip, status: 200
+  end
+
   def getTrips
 		@trips = current_user.trips
 		render :json => @trips
  	end
+
+  def showTrips
+    @user = current_user
+    @trips = @user.trips
+    render 'showtrips'
+  end
 
   def show
     @trip = Trip.find_by(:id => params[:id])
@@ -52,11 +64,19 @@ class TripsController < ApplicationController
     @city2 = params[:city2]
     # @country1 = params[:country1]
     # @country2 = params[:country2]
-    @user = User.new
+    @user = current_user
     gon.lat1 = @lat1
     gon.lng1 = @lng1
     gon.lat2 = @lat2
     gon.lng2 = @lng2
+  end
+
+  def updateTripsWithStops
+    # trip = Trip.find_by(:id => )
+    trip = current_user.trips.find_by_id(params[:id])
+    trip.list_stops.push(params[:city])
+    trip.save
+    render json: trip
   end
 
 
@@ -80,11 +100,10 @@ class TripsController < ApplicationController
   def search_matching
 		@city1 = params[:ridecity1]
 		@city2 = params[:ridecity2]
-		trips = Trip.all
-		collection = []
+		@trips = Trip.all
 		matching_trips = []
-		trips.each do |trip|
-			if trip.return_stops.include?(@city1) && trip.return_stops.include?(@city2)
+		@trips.each do |trip|
+			if trip.list_stops.join(",").include?(@city1) && trip.list_stops.join(",").include?(@city2)
 			matching_trips.push(trip)
 			end
 		end
@@ -173,13 +192,8 @@ class TripsController < ApplicationController
         return date.strftime("%B %-d, %Y")
     end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trip
-      @trip = Trip.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin, :destination, :date, :time, :seat, :price, :description, :city1, :country1, :city2, :country2, :lat1, :lng1, :lat2, :lng2, :list_stops, :user_id)
+      params.permit(:origin, :destination, :date, :time, :seat, :price, :description, :city1, :country1, :city2, :country2, :lat1, :lng1, :lat2, :lng2, :list_stops, :user_id, :trip_id)
     end
 end
