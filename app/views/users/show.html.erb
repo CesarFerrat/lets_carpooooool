@@ -2,13 +2,14 @@
 <br>
 <br>
 <body class="parallax">
-
+<div class="container">
 <a href="/" class="btn btn-primary">Profile</a>
 <a href="/users/<%=current_user.id%>/showtrips" class="btn btn-primary">Trips</a>
 <a href="/" class="btn btn-primary">Post a new trip</a>
 <a href="/" class="btn btn-primary">Reservations</a>
 <a href="/" class="btn btn-primary">Wallet</a>
 <a href="/" class="btn btn-primary">Settings</a>
+</div>
 
  		<div class="modal fade scroll" id="loading-indicator" background="transparent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -41,18 +42,20 @@ function addTrip () {
 
       var request = $.post('/users/<%=current_user.id%>/createtrips', saved_new_trip);
 
-                       function onSaveSuccess (response) {
-                         console.debug('saved!', response);
-                         localStorage.removeItem("new-trip");
-                         calcRoute(saved_new_trip, response.id);
-                       }
+          function onSaveSuccess (response) {
+            console.debug('saved!', response);
+            localStorage.removeItem("new-trip");
+            calcRoute(saved_new_trip, response.id);
+          }
 
-                       function onSaveFailure (err) {
-                         console.error(err.responseJSON);
-                       }
-                       console.log(saved_new_trip);
-                       request.done(onSaveSuccess);
-                       request.fail(onSaveFailure);
+          function onSaveFailure (err) {
+           console.error(err.responseJSON);
+          }
+
+      console.log(saved_new_trip);
+
+      request.done(onSaveSuccess);
+      request.fail(onSaveFailure);
 
     }else {
         console.debug('No trip added by refreshing webpage...')
@@ -258,15 +261,16 @@ function calcRoute(saved_new_trip, trip_id) {
 
       function callback(place, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-          var city = place.formatted_address;
-          console.log(city);
+          var address = place.formatted_address;
+          console.log(address);
+
           hittingdatabase();
             function hittingdatabase(){
             $.ajax({
                 url: '/trips/add_coords/' + trip_id ,
                 type: 'PATCH',
                 data: {
-                  city: city
+                  address: address
                 },
                  success: function(all_trips){
 

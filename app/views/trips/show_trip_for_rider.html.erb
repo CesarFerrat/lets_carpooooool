@@ -1,31 +1,29 @@
 <style type="text/css">
       #map-canvas{
-          height: 300px;
-          width: 320px;
+          height: 230px;
+          width: 250px;
       }
 </style>
 <body class="parallax">
-<br>
-<br>
-<br>
-<br>
+
 <div class="row">
 	<div class="col-lg-2">
+    <a href="/search/trips"> Go back</a>
 	</div>
 		<div class="col-lg-3">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				<h1 class="panel-title text-center" >Trips details</h1>
+				<h1 class="panel-title text-center" ><strong>Trip</strong></h1>
 				</div>
 				<div class="panel-body">
 					<div class="container">
 						<ul class="tripDetails"><br>
-							<li>Departure point: <strong><%=@trip.city1%></strong></li><br>
-							<li>Destination point: <strong><%=@trip.city2%></strong></li><br>
-							<li>Departure date: <strong><%=@trip.date%></strong></li><br>
-							<li>Departure time: <strong><%=@trip.time%></strong></li><br>
-							<li>Trip details: <strong><%=@trip.description%></strong></li><br>
+							<li>Origin: <strong><%=@trip.city1%></strong></li><br>
+							<li>Destination: <strong><%=@trip.city2%></strong></li><br>
+							<li>Date: <strong><%=pretty_date(@trip.date)%></strong></li><br>
+							<li>Time: <strong><%=@trip.time.strftime("%H:%M:%S")%></strong></li><br>
+							<li>Details: <strong><%=@trip.description%></strong></li><br>
 						</ul>
 					</div>
 				</div>
@@ -34,7 +32,7 @@
 		<div class="col-lg-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				<h1 class="panel-title text-center" >Route</h1>
+				<h1 class="panel-title text-center" ><strong>Route</strong></h1>
 				</div>
 				<div class="panel-body">
 					<div class="container">
@@ -46,7 +44,7 @@
 		<div class="col-lg-2">
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
-					<h1 class="panel-title "><%=@trip.seat%> seats available</h1>
+					<h1 class="panel-title "><strong><%=@trip.seat%></strong> seats available</h1>
 					<h1 class="panel-title "><strong>$<%=@trip.price%></strong> per passenger</h1>
 				</div>
 				<div class ="panel-body text-center">
@@ -55,16 +53,14 @@
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				<h1 class="panel-title text-center" ></h1>
+				<h1 class="panel-title text-center" ><strong><%=@user.username%></strong></h1>
 				</div>
 				<div class="panel-body">
 						<ul class="UserDetails">
 							<li>Age: <strong>29</strong></li>
-							<li>Nationality: <strong>French</strong></li>
-							<li>email: <strong></strong></li>
-							<li>Member since: <strong>07/02/2014</strong></li>
+							<li>Member since: <strong>2014</strong></li>
 							<li>Verified ID: <strong>Yes</strong></li>
-							<li><strong><a >See public profile</a></strong></li>
+							<li><strong><a>See Reviews</a></strong></li>
 						</ul>
 				</div>
 			</div>
@@ -102,7 +98,7 @@
 					data.forEach(function(comment){
 						var line1 = "<div class='panel panel-default' style='padding: 10px;'>"
 						var line2 = "<div class='panel-heading'>"
-						var line3 = "<div>New user wonders about: <strong>"  + comment.title + "</strong></div>"
+						var line3 = comment.owner + " about: <strong>"  + comment.title + "</strong></div>"
 						var line4 = '<h4><small>"' + comment.content + '"</small></h4>'
 						var line5 = "</div>"
 						var line6 = "</div>"
@@ -118,7 +114,6 @@
 	</div>
 
 	<div class="col-lg-3">
-
 
 			<div class="panel panel-default panel_white_trans" style="padding: 10px;">
 
@@ -202,17 +197,12 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
-// console.log(gon.lat1);
-// console.log(gon.lng1);
-// console.log(gon.lat2);
-// console.log(gon.lng2);
-
 function calcRoute() {
 	console.log("map route displayed");
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
-    zoom:2,
+    zoom:3,
     center: chicago,
 };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);

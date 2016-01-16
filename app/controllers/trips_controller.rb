@@ -74,7 +74,9 @@ class TripsController < ApplicationController
   def updateTripsWithStops
     # trip = Trip.find_by(:id => )
     trip = current_user.trips.find_by_id(params[:id])
-    trip.list_stops.push(params[:city])
+    stops = params[:address]
+    trip.list_stops.concat(stops.split(", ")).uniq!
+    print trip.list_stops
     trip.save
     render json: trip
   end
@@ -98,21 +100,30 @@ class TripsController < ApplicationController
   end
 
   def search_matching
+
 		@city1 = params[:ridecity1]
 		@city2 = params[:ridecity2]
 		@trips = Trip.all
+    @trip = Trip.find_by(:id => params[:id])
+
 		matching_trips = []
 		@trips.each do |trip|
-			if trip.list_stops.join(",").include?(@city1) && trip.list_stops.join(",").include?(@city2)
-			matching_trips.push(trip)
+			if trip.list_stops.include?(@city1) && trip.list_stops.include?(@city2) && (trip.list_stops.index(@city1) < trip.list_stops.index(@city2))
+          tripObject = trip.as_json
+          tripObject["username"] = trip.user.username
+          tripObject["pretty_date"] = pretty_date(trip.date)
+          print pretty_date(trip.date)
+			    matching_trips.push(tripObject)
 			end
 		end
+
     render(:status => 200, :json => matching_trips)
   end
 
 
   def direct_show
   	@trip = Trip.find_by(:id => params[:id])
+    @user = User.find(@trip.user_id)
   	@comment = @trip.comments.new
 		@origin = (@trip.origin).split(",")
 		@lat1 = @origin[0]
@@ -190,6 +201,10 @@ class TripsController < ApplicationController
 
     def pretty_date(date)
         return date.strftime("%B %-d, %Y")
+    end
+
+    def pretty_time(time)
+      return time.strftime("%H:%M:%S")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get '/users/:id/showtrips' => 'trips#showTrips'
   delete '/removeTrip/:id' => 'trips#removeTrip'
   post '/trips/:id/comments' => 'trips#add_comment', as: :trip_comments
-  get '/getcomments/:id' => 'comments#send_comments'
+  get '/getcomments/:id' => 'comments#get_comments'
   post '/addcomments/:id' => 'comments#add_comments'
    # post '/trips/:id/reserve' => 'reservations#reserve'
    # post '/users/:id/reservations/:id/unreserve' => 'reservations#unreserve'
