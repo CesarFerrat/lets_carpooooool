@@ -1,28 +1,7 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Result: Awarded the "Most Technically Complex Project" during the IronHack Hackshow Aug. 7th 2015 in Miami.  http://lets-carpooooool.herokuapp.com
+After working 9 days on the project, I presented a technical solution to improve Car Pooling platforms by bringing more accuracy so more matches between drivers and riders = more business $$. Currently the car polling world leader BlaBlaCar (worth $1+ billion) is missing a lot of matches.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Using the Google Maps API, I created a technical solution in order to find all the cities present between a point A and point B anywhere in the world.
+This solution can be applied to many other activities/business.
