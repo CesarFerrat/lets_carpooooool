@@ -1,6 +1,33 @@
-<%- model_class = Reservation -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => Reservation %></h1>
-</div>
-<%= render :partial => 'form' %>
+<body class="parallax">
 
+<a href="/search/trips"> Go back</a>|
+
+
+<div class="container">
+
+	<div class="col-lg-3">
+	</div>
+		<div class="col-lg-6">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				<h1 class="panel-title text-center" >Book 1 seat in <%=@trip.user.username%>'s car?</h1>
+				</div>
+				<div "panel-body">
+					<div class="container">
+            <h3>Your credit card will be charged for $ <%=@trip.price%>
+             <div class="col-lg-3">
+               <button id="reservation" class="btn btn-success">Book!</button>
+             </div>
+             <div class="col-lg-3">
+               <button id="reservation" class="btn btn-danger">Cancel!</button>
+             </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="col-lg-3">
+	</div>
+</div>
+
+</body>

@@ -22,7 +22,7 @@
 							<li>Origin: <strong><%=@trip.city1%></strong></li><br>
 							<li>Destination: <strong><%=@trip.city2%></strong></li><br>
 							<li>Date: <strong><%=pretty_date(@trip.date)%></strong></li><br>
-							<li>Time: <strong><%=@trip.time.strftime("%H:%M:%S")%></strong></li><br>
+							<li>Time: <strong><%=@trip.time.strftime("%H:%M %p")%></strong></li><br>
 							<li>Details: <strong><%=@trip.description%></strong></li><br>
 						</ul>
 					</div>

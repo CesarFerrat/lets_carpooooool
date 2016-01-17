@@ -6,6 +6,54 @@
 </style>
 <body class="parallax">
 
+  <div class="modal fade scroll" id="login-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Welcome to Let's Carpooooool</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form method="get" action="/login" class="form-horizontal">
+            <h4 class="modal-title" id="myModalLabel">Already a member?</h4><br>
+            <button type="submit" class="btn btn-success">Log in</button>
+            </form>
+          </div><br>
+          <div class="container-fluid">
+            <form method="get" action="/signup" class="form-horizontal">
+            <h4 class="modal-title" id="myModalLabel">New here?</h4><br>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade scroll" id="booking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Book 1 seat with <%=@user.username%> ?</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <h4 class="modal-title" id="myModalLabel">Your credit will be charged for $ <%=@trip.price%></h4><br>
+            <form method="get" action="/" class="form-horizontal">
+            <button type="submit" class="btn btn-success">Book!</button>
+            </form>
+          </div><br>
+          <div class="container-fluid">
+            <form method="get" action="/" class="form-horizontal">
+            <button type="submit" class="btn btn-danger">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="row">
 	<div class="col-lg-2">
     <a href="/search/trips"> Go back</a>
@@ -22,7 +70,7 @@
 							<li>Origin: <strong><%=@trip.city1%></strong></li><br>
 							<li>Destination: <strong><%=@trip.city2%></strong></li><br>
 							<li>Date: <strong><%=pretty_date(@trip.date)%></strong></li><br>
-							<li>Time: <strong><%=@trip.time.strftime("%H:%M:%S")%></strong></li><br>
+							<li>Time: <strong><%=@trip.time.strftime("%H:%M %p")%></strong></li><br>
 							<li>Details: <strong><%=@trip.description%></strong></li><br>
 						</ul>
 					</div>
@@ -48,7 +96,7 @@
 					<h1 class="panel-title "><strong>$<%=@trip.price%></strong> per passenger</h1>
 				</div>
 				<div class ="panel-body text-center">
-					<button type="button" class="btn btn-success">Reserve a seat!</button>
+					<button id="reservation" class="btn btn-success">Reserve a seat!</button>
 				</div>
 			</div>
 			<div class="panel panel-default">
@@ -140,8 +188,6 @@
 					</div>
 					<%end%>
 
-
-
 					<button class="btn btn-primary" style="margin-top: 15px" type="submitComments">Submit</button>
 
 					<script>
@@ -187,9 +233,23 @@
 </div>
 
 </div>
-
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
  <script type="text/javascript">
+
+ $('#reservation').on('click', function(){
+   event.preventDefault;
+   console.log('button reservation clicked');
+   localStorage.removeItem("new-trip");
+   <% if user_signed_in? && (current_user.id != @trip.user.id) %>
+
+      $('#booking').modal('toggle');
+
+   <% else %>
+
+      $('#login-signup').modal('toggle');
+
+   <% end %>
+
+   });
 
 $(document).ready(calcRoute);
 

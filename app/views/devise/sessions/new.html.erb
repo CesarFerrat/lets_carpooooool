@@ -1,4 +1,15 @@
 <body class="firstimage">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
   <h1><%=t ".title", default: "Login" %></h1>
 
 
@@ -6,7 +17,7 @@
 
 
   <div class="form-group">
-    <%= f.label :login, "Username or Email", class: "control-label col-md-4" %>
+    <%= f.label :login, "Username or Email", class: "control-label black col-md-4" %>
     <div class="col-md-8">
       <%= f.text_field :login, class: "text-field form-control", html: {spellcheck: "false"} %>
     </div>
@@ -14,7 +25,7 @@
 
 
   <div class="form-group">
-    <%= f.label :password, class: "control-label col-md-4" %>
+    <%= f.label :password, class: "control-label black col-md-4" %>
     <div class="col-md-8">
       <%= f.password_field :password, class: "text-field form-control", html: {autocomplete: "off"} %>
     </div>
@@ -22,7 +33,7 @@
 
   <% if devise_mapping.rememberable? -%>
     <div class="form-group">
-      <%= f.label :remember_me, "Remember Me", class: "control-label col-md-4" %>
+      <%= f.label :remember_me, "Remember Me", class: "control-label black col-md-4" %>
       <div class="col-md-8">
         <%= f.check_box :remember_me %>
       </div>

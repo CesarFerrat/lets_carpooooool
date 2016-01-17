@@ -123,7 +123,7 @@ class TripsController < ApplicationController
 
   def direct_show
   	@trip = Trip.find_by(:id => params[:id])
-    @user = User.find(@trip.user_id)
+    @user = User.find(@trip.user.id)
   	@comment = @trip.comments.new
 		@origin = (@trip.origin).split(",")
 		@lat1 = @origin[0]

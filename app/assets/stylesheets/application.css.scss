@@ -50,12 +50,16 @@ body.parallax {
 
 body.firstimage {
 
-    background-image: asset-url('Carpooling_Featured.png');
+    background-image: asset-url('login.png');
     background-size: cover;
 }
 
 .modal-content {
-    background-image: asset-url('carpooling.png');
+    background-color: black;
+}
+
+.black {
+  color: black;
 }
 
 .modal {
