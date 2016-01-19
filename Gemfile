@@ -54,7 +54,7 @@ gem 'font-awesome-sass', '~> 4.4.0'
 
 gem 'gon'
 
-gem 'devise', '3.2'
+gem 'devise', '3.2.4'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'simple_form'
