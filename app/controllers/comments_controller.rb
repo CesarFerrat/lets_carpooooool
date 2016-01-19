@@ -10,11 +10,12 @@ class CommentsController < ApplicationController
 	end
 
 	def add_comments
-		p params
 		trip = Trip.find(params[:id])
 		comment = trip.comments.new(:title => params[:title],:content => params[:content] )
-    if user_signed_in?
-      comment["owner"] = current_user.username + " responds"
+    if user_signed_in? && current_user.id == trip.user.id
+      comment["owner"] = current_user.username + ", your potential driver, responds"
+    elsif user_signed_in? && current_user.id != trip.user.id
+        comment["owner"] = current_user.username + " wonders"
     else
       comment["owner"] = "A new rider wonders"
     end
