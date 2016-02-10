@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/search/trips' => 'trips#search_matching'
   post '/users/:id/createtrips' => 'trips#createTrips'
   patch '/trips/add_coords/:id' => 'trips#updateTripsWithStops'
+  put '/trips/verify/:id' => 'trips#cityOrderVerification'
   get '/users/:id/gettrips' => 'trips#getTrips'
   get '/trips/show/:id' => 'trips#direct_show'
   get '/users/:id/showtrips' => 'trips#showTrips'

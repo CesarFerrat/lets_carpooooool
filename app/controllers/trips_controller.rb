@@ -33,7 +33,8 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find_by(:id => params[:id])
+    @trip = Trip.find(params[:id])
+    @user = User.find(params[:user_id])
 		@origin = (@trip.origin).split(",")
 		@lat1 = @origin[0]
 		@lng1 = @origin[1]
@@ -47,79 +48,6 @@ class TripsController < ApplicationController
 
 		@comment = Comment.new
   end
-
-
-  def removeTrip
-    trip = Trip.find_by(:id => params[:id])
-    trip.destroy
-    render :status => 200, :json => {:response => "Confirmed"}
-  end
-
-  def form
-    @lat1 = params[:lat1]
-    @lng1 = params[:lng1]
-    @lat2 = params[:lat2]
-    @lng2 = params[:lng2]
-    @city1 = params[:city1]
-    @city2 = params[:city2]
-    # @country1 = params[:country1]
-    # @country2 = params[:country2]
-    @user = current_user
-    gon.lat1 = @lat1
-    gon.lng1 = @lng1
-    gon.lat2 = @lat2
-    gon.lng2 = @lng2
-  end
-
-  def updateTripsWithStops
-    # trip = Trip.find_by(:id => )
-    trip = current_user.trips.find_by_id(params[:id])
-    stops = params[:address]
-    trip.list_stops.concat(stops.split(", ")).uniq!
-    print trip.list_stops
-    trip.save
-    render json: trip
-  end
-
-
-  def matchingTrips
-    @lat1 = params[:ridelat1]
-    @lng1 = params[:ridelng1]
-    @lat2 = params[:ridelat2]
-    @lng2 = params[:ridelng2]
-    @city1 = params[:ridecity1]
-    @city2 = params[:ridecity2]
-    # @country1 = params[:country1]
-    # @country2 = params[:country2]
-    @user = User.new
-    gon.lat1 = @lat1
-    gon.lng1 = @lng1
-    gon.lat2 = @lat2
-    gon.lng2 = @lng2
-    render '/trips/matchingtrips'
-  end
-
-  def search_matching
-
-		@city1 = params[:ridecity1]
-		@city2 = params[:ridecity2]
-		@trips = Trip.all
-    @trip = Trip.find_by(:id => params[:id])
-
-		matching_trips = []
-		@trips.each do |trip|
-			if trip.list_stops.include?(@city1) && trip.list_stops.include?(@city2) && (trip.list_stops.index(@city1) < trip.list_stops.index(@city2))
-          tripObject = trip.as_json
-          tripObject["username"] = trip.user.username
-          tripObject["pretty_date"] = pretty_date(trip.date)
-          print pretty_date(trip.date)
-			    matching_trips.push(tripObject)
-			end
-		end
-
-    render(:status => 200, :json => matching_trips)
-  end
-
 
   def direct_show
   	@trip = Trip.find_by(:id => params[:id])
@@ -138,6 +66,102 @@ class TripsController < ApplicationController
 
 	  render 'show_trip_for_rider'
 	end
+
+
+  def removeTrip
+    trip = Trip.find_by(:id => params[:id])
+    trip.destroy
+    render :status => 200, :json => {:response => "Confirmed"}
+  end
+
+  def form
+    @lat1 = params[:lat1]
+    @lng1 = params[:lng1]
+    @lat2 = params[:lat2]
+    @lng2 = params[:lng2]
+    @city1 = params[:city1]
+    @city2 = params[:city2]
+    @country1 = params[:country1]
+    @country2 = params[:country2]
+    @user = current_user
+    gon.lat1 = @lat1
+    gon.lng1 = @lng1
+    gon.lat2 = @lat2
+    gon.lng2 = @lng2
+  end
+
+  def updateTripsWithStops
+    # trip = Trip.find_by(:id => )
+    trip = current_user.trips.find_by_id(params[:id])
+    stops = params[:stops]
+    p trip.city1
+      if stops[0] != trip.city1
+          if stops.index("CA 94128") != nil
+            x = stops.index("CA 94128")
+            stops[x] = "San Francisco International Airport"
+          end
+          if stops.index("San Francisco") != nil
+            y = stops.index("San Francisco")
+            stops.slice!(y)
+          end
+      stops.uniq!
+      stops.reverse!
+
+      else
+        if stops.index("CA 94128") != nil
+          x = stops.index("CA 94128")
+          stops[x] = "San Francisco International Airport"
+        end
+        if stops.index("San Francisco") != nil
+          y = stops.index("San Francisco")
+          stops.slice!(y)
+        end
+      end
+
+    trip.list_stops.concat(stops).uniq!
+    print trip.list_stops
+    trip.save
+    render json: trip
+  end
+
+  def matchingTrips
+    @lat1 = params[:ridelat1]
+    @lng1 = params[:ridelng1]
+    @lat2 = params[:ridelat2]
+    @lng2 = params[:ridelng2]
+    @city1 = params[:ridecity1]
+    @city2 = params[:ridecity2]
+    @country1 = params[:country1]
+    @country2 = params[:country2]
+    @user = User.new
+    gon.lat1 = @lat1
+    gon.lng1 = @lng1
+    gon.lat2 = @lat2
+    gon.lng2 = @lng2
+    render '/trips/matchingtrips'
+  end
+
+  def search_matching
+
+		@city1 = params[:ridecity1]
+		@city2 = params[:ridecity2]
+		@trips = Trip.all
+    @trip = Trip.find_by(:id => params[:id])
+
+		matching_trips = []
+		@trips.each do |trip|
+			if trip.list_stops.include?(@city1) && trip.list_stops.include?(@city2) && (trip.list_stops.index(@city1) < trip.list_stops.index(@city2)) 
+          tripObject = trip.as_json
+          tripObject["username"] = trip.user.username
+          tripObject["pretty_date"] = pretty_date(trip.date)
+          print pretty_date(trip.date)
+			    matching_trips.push(tripObject)
+			end
+		end
+
+    render(:status => 200, :json => matching_trips)
+  end
+
 
 	def add_comment
 		@trip = Trip.find_by(:id => params[:id])
