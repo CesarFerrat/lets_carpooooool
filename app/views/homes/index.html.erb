@@ -20,9 +20,12 @@ function initialize() {
          lat1 = place1.geometry.location.lat().toString();
          lng1 = place1.geometry.location.lng().toString();
          city1 = place1.address_components[0].long_name;
-         if (city1 === "San Francisco International Airport Tram") {
+         if (city1 === "San Francisco International Airport Tram" || city1 === "International Terminal Departures Level" || city1 === "International Terminal Arrivals Level"
+
+       ) {
            var city1 = "San Francisco International Airport"
          };
+
          country1 = place1.address_components[3].short_name;
          console.log(city1);
          console.log(country1);
@@ -88,7 +91,7 @@ function initialize2() {
          lat2 = place2.geometry.location.lat().toString();
          lng2 = place2.geometry.location.lng().toString();
          city2 = place2.address_components[0].long_name;
-         if (city2 === "San Francisco International Airport Tram")  {  
+         if (city2 === "San Francisco International Airport Tram")  {
            var city2 = "San Francisco International Airport"
          };
          country2 = place2.address_components[3].short_name;

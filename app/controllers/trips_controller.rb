@@ -94,33 +94,30 @@ class TripsController < ApplicationController
     # trip = Trip.find_by(:id => )
     trip = current_user.trips.find_by_id(params[:id])
     stops = params[:stops]
-    p trip.city1
-      if stops[0] != trip.city1
-          if stops.index("CA 94128") != nil
-            x = stops.index("CA 94128")
-            stops[x] = "San Francisco International Airport"
-          end
-          if stops.index("San Francisco") != nil
-            y = stops.index("San Francisco")
-            stops.slice!(y)
-          end
-      stops.uniq!
-      stops.reverse!
+    # p trip.city1
+      # if stops[0] != trip.city1
+      #     if stops.index("CA 94128") != nil
+      #       x = stops.index("CA 94128")
+      #       stops[x] = "San Francisco International Airport"
+      #     end
+      #     if stops.index("San Francisco") != nil
+      #       y = stops.index("San Francisco")
+      #       stops.slice!(y)
+      #     end
+      # stops.uniq!
+      # stops.reverse!
+      #
+      # else
+      #   if stops.index("CA 94128") != nil
+      #     x = stops.index("CA 94128")
+      #     stops[x] = "San Francisco International Airport"
+      #   end
+      # end
 
-      else
-        if stops.index("CA 94128") != nil
-          x = stops.index("CA 94128")
-          stops[x] = "San Francisco International Airport"
-        end
-        if stops.index("San Francisco") != nil
-          y = stops.index("San Francisco")
-          stops.slice!(y)
-        end
-      end
-
-    trip.list_stops.concat(stops).uniq!
-    print trip.list_stops
+    # trip.list_stops.concat(stops).uniq!
+    trip.list_stops.concat(stops)
     trip.save
+    print trip.list_stops
     render json: trip
   end
 
@@ -150,7 +147,7 @@ class TripsController < ApplicationController
 
 		matching_trips = []
 		@trips.each do |trip|
-			if trip.list_stops.include?(@city1) && trip.list_stops.include?(@city2) && (trip.list_stops.index(@city1) < trip.list_stops.index(@city2)) 
+			if trip.list_stops.include?(@city1) && trip.list_stops.include?(@city2) && (trip.list_stops.index(@city1) < trip.list_stops.index(@city2))
           tripObject = trip.as_json
           tripObject["username"] = trip.user.username
           tripObject["pretty_date"] = pretty_date(trip.date)
