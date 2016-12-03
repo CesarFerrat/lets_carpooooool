@@ -17,7 +17,7 @@ var map;
 // console.log(gon.lng2);
 
 function calcRoute() {
-  $('#warning-message').modal('toggle');
+  // $('#warning-message').modal('toggle');
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
@@ -41,10 +41,7 @@ function calcRoute() {
 </script>
 
 <body class="parallax">
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
   <div id="container">
     <div class="col-md-2 ">
     </div>
@@ -60,6 +57,11 @@ function calcRoute() {
           <!-- <input type="hidden" id="country1" value="<%=@country1%>"/> -->
           <input type="hidden" id="city2" value="<%=@city2%>"/>
           <!-- <input type="hidden" id="country2" value="<%=@country2%>"/> -->
+          <div class="form-group">
+            <div class="col-xs-5">
+            </div>
+              <label class="col-xs-5 control-label"><strong><i>* Please fill up every fields</i></strong></label>
+          </div>
           <div class="form-group">
               <label class="col-xs-5 control-label">Date: </label>
               <div class="col-xs-5">
@@ -101,10 +103,12 @@ function calcRoute() {
           </div>
       </form>
     </div>
+    <div class="col-md-1 ">
+    </div>
     <div class="col-md-4">
       <div id="map-canvas"></div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
   </div>
 
