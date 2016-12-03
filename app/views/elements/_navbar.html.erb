@@ -1,5 +1,33 @@
-<nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
+<!-- <nav class="navbar navbar-default" role="navigation"> -->
+<nav class="navbar navbar-default navbar-fixed-top container">
+
+  <%= link_to (image_tag('carpool.jpg', width: "100px")), defined?(root_path) ? root_path : "#"%>
+  <strong><%= link_to "LET'S CARPOOOOOOL!", defined?(root_path) ? root_path : "#"%></strong>
+
+  <div class="navbar-right">
+  <% if defined?(Devise) %>
+    <% if user_signed_in? %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit Account", edit_user_registration_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    <% else %>
+    <button type="button" class="btn btn-default navbar-btn"><strong><%= link_to "Login", new_user_session_path %></strong></button>
+    <button type="button" class="btn btn-default navbar-btn"><strong><%= link_to "Sign Up", new_user_registration_path %></strong></button>
+    <% end %>
+  <% end %>
+
+</div>
+</nav>
+
+
+<!-- OLD NAVBAR -->
+<!-- <nav class="navbar navbar-default" role="navigation">
+
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -13,7 +41,7 @@
 
   </div>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
+
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li><a class="w-nav-link menu-li">                       </a></li>
@@ -46,5 +74,5 @@
         <% end %>
       <% end %>
     </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+  </div>
+</nav> -->
