@@ -1,5 +1,5 @@
 <!-- <nav class="navbar navbar-default" role="navigation"> -->
-<nav class="navbar navbar-default navbar-fixed-top container">
+<nav class="navbar navbar-default navbar-header navbar-fixed-top container centered">
 
   <%= link_to (image_tag('carpool.jpg', width: "100px")), defined?(root_path) ? root_path : "#"%>
   <strong><%= link_to "LET'S CARPOOOOOOL!", defined?(root_path) ? root_path : "#"%></strong>
@@ -7,14 +7,14 @@
   <div class="navbar-right">
   <% if defined?(Devise) %>
     <% if user_signed_in? %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+      <ul class="dropdown">
+        <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown"><strong>Account<b class="caret"></b></strong></button>
         <ul class="dropdown-menu">
           <li><%= link_to "Edit Account", edit_user_registration_path %></li>
           <li class="divider"></li>
           <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
         </ul>
-      </li>
+      </ul>
     <% else %>
     <button type="button" class="btn btn-default navbar-btn"><strong><%= link_to "Login", new_user_session_path %></strong></button>
     <button type="button" class="btn btn-default navbar-btn"><strong><%= link_to "Sign Up", new_user_registration_path %></strong></button>

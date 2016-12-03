@@ -1,18 +1,16 @@
-
+<body class="carpool">
   <head>
     <title>Results!</title>
 
     <style type="text/css">
       #map-canvas{
-          height: 200px;
-          width: 330px;
+          height: 260px;
+          width: 360px;
       }
     </style>
 
 
   </head>
-
-  <body class="parallax">
 
   <div id="container">
 
@@ -37,7 +35,7 @@
           </div>
 
 
-          <div class="panel-body">Your potential drivers:
+          <div class="panel-body"><h2><strong>Your potential drivers:</strong><h2>
                 <ul class="text-center" id="tripList">
                 </ul>
               </div>
@@ -93,8 +91,10 @@ function calcRoute() {
 
                             matching_trips.forEach(function (trip) {
 
-                                html = ['<ul data-hook="' + trip.id + '"><h3><strong><a href="/trips/show/' + trip.id + '">' + trip.username + ' on ' + trip.pretty_date + '</strong> --- ' + trip.city1 + ' => ' + trip.city2 + '</a></h3></ul>'
-                                        ];
+                                // html = ['<ul data-hook="' + trip.id + '"><strong><a href="/trips/show/' + trip.id + '"><h3>' + trip.username + ' on ' + trip.pretty_date + '</strong> --- ' + trip.city1 + ' => ' + trip.city2 + '</h3></a></ul>'
+                                //         ];
+                                html = ['<ul data-hook="' + trip.id + '"><a href="/trips/show/' + trip.id + '"><h3><strong>' + trip.username + '</strong>   :   <strong>' + trip.city1 + '</strong> ==> <strong>' + trip.city2 + '</strong> on <strong>' + trip.pretty_date + '</strong></h3></a></ul>'
+                                                ];
                                 $('#tripList').append(html);
                             });
                         }

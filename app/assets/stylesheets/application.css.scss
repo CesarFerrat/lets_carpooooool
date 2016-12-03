@@ -41,16 +41,26 @@
   max-width: 450px;
 }
 
+.alert {
+   width:40%;
+}
+
 body.parallax {
 
     background-image: asset-url('header-parallax.jpg');
     background-size: cover;
 
-  }
+}
 
 body.firstimage {
 
     background-image: asset-url('login.png');
+    background-size: cover;
+}
+
+body.carpool {
+
+    background-image: asset-url('carpool.png');
     background-size: cover;
 }
 
