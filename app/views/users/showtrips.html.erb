@@ -1,12 +1,7 @@
 <body class="parallax">
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
+
 <!-- <a href="/users/<%=current_user.id%>/"> Go back</a> | -->
-
-
-
-
 
 	<div class="col-lg-3">
 	</div>
@@ -41,7 +36,7 @@ function getTrips(){
 
     	trips.forEach(function (trip) {
 
-    		 html = ['<li data-hook="' + trip.id + '"><h3><a href="/users/<%=current_user.id%>/trips/' + trip.id + '">' + trip.city1 + ' => ' + trip.city2 + ' </a><button data-hook="delete-trip" class="btn btn-danger" id="'+ trip.id +'"> x </button></h3></li>'
+    		 html = ['<ul data-hook="' + trip.id + '"><h3><a href="/users/<%=current_user.id%>/trips/' + trip.id + '">' + trip.city1 + ' => ' + trip.city2 + ' </a><button data-hook="delete-trip" class="btn btn-danger" id="'+ trip.id +'"> x </button></h3></ul>'
 			      	];
 				     $('.tripList').append(html);
     	});
@@ -52,7 +47,7 @@ function getTrips(){
     	    var request = $.ajax({
     	          url: '/removeTrip/'+ tripID ,
     	          type: 'DELETE',
-    	           success: function(){ $('li[data-hook="' + tripID + '"]').remove()}
+    	           success: function(){ $('ul[data-hook="' + tripID + '"]').remove()}
     	    });
     	});
   	};

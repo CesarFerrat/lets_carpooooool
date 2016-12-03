@@ -5,16 +5,15 @@
 <style type="text/css">
       #map-canvas{
           height: 230px;
-          width: 295px;
+          width: 240px;
       }
 </style>
 <body class="carpool">
-
+<br><br><br><br>
 <div class="row">
-	<div class="col-lg-2">
-    <a href="/users/<%=current_user.id%>/showtrips"> Go back</a>
+	<div class="col-lg-3">
 	</div>
-		<div class="col-lg-3">
+		<div class="col-lg-2">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -23,17 +22,17 @@
 				<div class="panel-body">
 					<div class="container">
 						<ul class="tripDetails"><br>
-							<li>Origin: <strong><%=@trip.city1%></strong></li><br>
-							<li>Destination: <strong><%=@trip.city2%></strong></li><br>
-							<li>Date: <strong><%=pretty_date(@trip.date)%></strong></li><br>
-							<li>Time: <strong><%=@trip.time.strftime("%H:%M %p")%></strong></li><br>
-							<li>Details: <strong><%=@trip.description%></strong></li><br>
+							<ul>Origin: <a><strong><%=@trip.city1%></strong></a></ul><br>
+							<ul>Destination: <a><strong><%=@trip.city2%></strong></a></ul><br>
+							<ul>Date: <a><strong><%=pretty_date(@trip.date)%></strong></a></ul><br>
+							<ul>Time: <a><strong><%=@trip.time.strftime("%H:%M %p")%></strong></a></ul><br>
+							<ul>Details: <a><strong><%=@trip.description%></strong></a></ul><br>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3">
+		<div class="col-lg-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 				<h1 class="panel-title text-center" ><strong>Route</strong></h1>
@@ -61,24 +60,24 @@
 				</div>
 				<div class="panel-body">
 						<ul class="UserDetails">
-							<li>Age: <strong>29</strong></li>
-							<li>Member since: <strong>2014</strong></li>
-							<li>Verified ID: <strong>Yes</strong></li>
-							<li><strong><a href="/users/<%=current_user.id%>">See Reviews</a></strong></li>
+							<ul>Age: <strong>29</strong></ul>
+							<ul>Member since: <strong>2014</strong></ul>
+							<ul>Verified ID: <strong>Yes</strong></ul>
+							<ul><strong><a href="/users/<%=current_user.id%>">See Reviews</a></strong></li>
 						</ul>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-2">
+		<div class="col-lg-3">
 		</div>
 </div>
 
 <div class="row">
 
-	<div class="col-lg-2">
+	<div class="col-lg-3">
 	</div>
 
-	<div class="col-lg-5">
+	<div class="col-lg-4">
 		<div class="panel panel-default" style="padding: 10px;">
 
 				<div class="panel-heading text-center">
@@ -117,7 +116,7 @@
 		</div>
 	</div>
 
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 
 			<div class="panel panel-default panel_white_trans" style="padding: 10px;">
 
@@ -184,7 +183,7 @@
 
 	</div>
 
-	<div class="col-lg-2">
+	<div class="col-lg-3">
 	</div>
 
 
